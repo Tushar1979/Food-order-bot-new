@@ -1,0 +1,49 @@
+{
+  "name": "Food_orderbot",
+  "version": "1.1.0",
+  "description": "This is food orderbot is software take order from POSI server",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "food_order_7869",
+    "win": {
+      "icon": "./assets/images/bot.png"
+    }
+  },
+  "postinstall": "electron-builder install-app-deps",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CubexO/FoodOrderBot.git"
+  },
+  "keywords": [],
+  "author": "CubexO Software Solutions LLP",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CubexO/FoodOrderBot/issues"
+  },
+  "window": {
+    "fullscreen": true
+  },
+  "homepage": "https://github.com/CubexO/FoodOrderBot#readme",
+  "devDependencies": {
+    "electron": "^13.1.2",
+    "electron-packager": "^15.3.0",
+    "electron-winstaller": "^5.0.0",
+    "electron-builder": "^22.11.7"
+  },
+  "dependencies": {
+    "animate.css": "^4.1.1",
+    "custom-electron-titlebar": "^3.2.7",
+    "electron-alert": "^0.1.16",
+    "electron-log": "^4.4.1",
+    "electron-prompt": "^1.6.2",
+    "jquery": "^3.6.0",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.7",
+    "request": "^2.88.2"
+  }
+}

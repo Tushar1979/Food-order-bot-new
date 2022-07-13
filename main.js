@@ -1,4 +1,4 @@
-const {app, BrowserWindow, dialog, Menu, ipcRenderer,ipcMain} = require('electron')
+const { app, BrowserWindow, dialog, Menu, ipcRenderer, ipcMain } = require('electron')
 const prompt = require('electron-prompt');
 const path = require('path');
 const log = require('electron-log');
@@ -12,22 +12,22 @@ let position_number
 
 ipcMain.on('storenumber', function (evt, url) {
     StoreNumber = url['data'];
-    if (StoreNumber === null || StoreNumber === undefined || StoreNumber===""){
+    if (StoreNumber === null || StoreNumber === undefined || StoreNumber === "") {
         StoreNumber = "Wait For Store Number fetch"
     }
 });
-if (StoreNumber === null || StoreNumber === undefined || StoreNumber===""){
+if (StoreNumber === null || StoreNumber === undefined || StoreNumber === "") {
     StoreNumber = "wait we are fetching store Number"
 }
 
 ipcMain.on('position_number', function (evt, url) {
     position_number = url['data'];
-    if (position_number === null || position_number === undefined || position_number===""){
+    if (position_number === null || position_number === undefined || position_number === "") {
         position_number = "Wait For Position Number fetch"
     }
 
 });
-if (position_number === null || position_number === undefined || position_number===""){
+if (position_number === null || position_number === undefined || position_number === "") {
     position_number = "wait we are fetching Position Number"
 }
 else {
@@ -209,10 +209,10 @@ function createWindow() {
         {
             label: 'Tools',
             submenu: [
-                // {
-                //     label: 'ToggleDevTools',
-                //     role: 'toggleDevTools',
-                // },
+                {
+                    label: 'ToggleDevTools',
+                    role: 'toggleDevTools',
+                },
                 {
                     label: 'About',
                     click() {
@@ -220,7 +220,7 @@ function createWindow() {
                     }
                 },
                 {
-                    label: "Start On Full Screen",
+                    label: "Run at Startup  in Full Screen",
                     click() {
                         mainWindow.setFullScreen(true)
                     }
@@ -228,13 +228,36 @@ function createWindow() {
                 {
                     label: 'Exit Fullscreen',
                     click() {
-                        mainWindow.setFullScreen(false)
-                    }
+                        if( mainWindow.isFullScreen()){
+                            mainWindow.setFullScreen(false)        
+                        }     
+                    },
+                    accelerator: 'Esc',
+                    role: 'exitFullscreen'
                 },
+
                 {
+
                     label: 'Reload',
-                    role: 'reload',
+                    accelerator: 'CommandOrControl+r',
+                    role: 'forceReload',
+
+                },
+
+                {
+                    label: 'Exit',
+                    accelerator: 'CommandOrControl+w',
+                    role: 'close',
+                }, 
+                {
+                    // label: 'IHLIHKJGKGEV',
+                    click() {
+                        mainWindow.minimize()
+                    },
+                    accelerator: 'Down',
+                    role: 'Minimize'
                 }
+
             ]
         }
     ])
@@ -247,7 +270,7 @@ function sendRequest(data) {
     console.log(JSON.stringify(data))
     var options = {
         'method': 'POST',
-        'url': 'https://itdesk.bubbleapps.io/api/1.1/wf/heartbeat',
+        // 'url': 'https://thestuff.io/api/1.1/wf/heartbeat',
         'headers': {
             'Content-Type': 'application/json'
         },
@@ -283,21 +306,21 @@ app.on('browser-window-created', (event) => {
     //         "date": date
     //
     //     }
-        // sendRequest(data)
+    // sendRequest(data)
 
-    }
+}
 )
 
 app.on('browser-window-focus', () => {
-        // let data = {
-        //     "message": "App Is Started Running ",
-        //     "live": "yes",
-        //     "storenumber": StoreNumber,
-        //     "date": date
-        //
-        // }
-        // sendRequest(data)
-    }
+    // let data = {
+    //     "message": "App Is Started Running ",
+    //     "live": "yes",
+    //     "storenumber": StoreNumber,
+    //     "date": date
+    //
+    // }
+    // sendRequest(data)
+}
 )
 
 app.on('before-quit', (event) => {
@@ -313,15 +336,15 @@ app.on('before-quit', (event) => {
 });
 
 app.on('browser-window-blur', () => {
-        // let data = {
-        //     "message": "App Is Running in background ",
-        //     "live": "yes",
-        //     "storenumber": StoreNumber,
-        //     "date": date
-        //
-        // }
-        // sendRequest(data)
-    }
+    // let data = {
+    //     "message": "App Is Running in background ",
+    //     "live": "yes",
+    //     "storenumber": StoreNumber,
+    //     "date": date
+    //
+    // }
+    // sendRequest(data)
+}
 )
 app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') app.quit()
@@ -345,7 +368,7 @@ setInterval(function () {
     let data = {
         "storenumber": StoreNumber,
         "date": date,
-        "position":position_number
+        "position": position_number
     }
     sendRequest(data)
 }, 600000)

@@ -1,20 +1,20 @@
 const config = require("./package.json")
 const $ = require("jquery");
 const InternetConnection = require('./assets/js/InternetConnection');
-const {fetchImage, download, slideshow} = require('./assets/js/headerImage');
-const {fetchingOrders} = require('./assets/js/takingOrders')
-const {FontSize} = require('./assets/js/fontsize')
-const {ipcRenderer, dialog} = require("electron");
-const {fetchSettings, changeSettings} = require("./assets/js/setting")
-const {about_template} = require("./assets/js/about")
-const {settings_template} = require("./assets/js/settings")
-const {default_setting} = require("./assets/js/default_setting")
-const {create_dir} = require("./assets/js/food-order-directory")
+const { fetchImage, download, slideshow } = require('./assets/js/headerImage');
+const { fetchingOrders } = require('./assets/js/takingOrders')
+const { FontSize } = require('./assets/js/fontsize')
+const { ipcRenderer, dialog } = require("electron");
+const { fetchSettings, changeSettings } = require("./assets/js/setting")
+const { about_template } = require("./assets/js/about")
+const { settings_template } = require("./assets/js/settings")
+const { default_setting } = require("./assets/js/default_setting")
+const { create_dir } = require("./assets/js/food-order-directory")
 const log = require('electron-log');
 const path = require("path");
 const fs = require('fs');
 const url = require("url");
-const {computeScreenAwareSize} = require("custom-electron-titlebar/common/dom");
+const { computeScreenAwareSize } = require("custom-electron-titlebar/common/dom");
 const local_directory = "C:\\Users\\public"
 const main_folder = "\\foodorderbot\\"
 
@@ -248,7 +248,7 @@ function imageRefreshRateFunction1(number) {
         let mediaType = ["screensaver"];
         mediaType.forEach(async (value, index) => {
             concept = image_theme_from_json;
-            let imageUrl = `https://itdesk.bubbleapps.io/api/1.1/obj/Media?constraints=[ { "key": "concept", "constraint_type": "equals", "value": "${concept}" } ]`;
+            let imageUrl = `https://thestuff.io/api/1.1/obj/Media?constraints=[ { "key": "concept", "constraint_type": "equals", "value": "${concept}" } ]`;
 
             const smallpath = imgpath + value + "\\";
             path_of_image = smallpath
@@ -302,13 +302,13 @@ function imageRefreshRateFunction1(number) {
                         previous_saved_image = files
                         log.info('this log is from line number 102 in renderer.js of image refresh rate --> ' + data)
                         console.log(concept)
-                        imageUrl = `https://itdesk.bubbleapps.io/api/1.1/obj/Media?constraints=[ { "key": "concept", "constraint_type": "equals", "value": "${concept}" } ]`;
+                        imageUrl = `https://thestuff.io/api/1.1/obj/Media?constraints=[ { "key": "concept", "constraint_type": "equals", "value": "${concept}" } ]`;
 
                         fetchImage(imageUrl, (response) => {
                             let data = JSON.parse(response);
                             imagesUrl = data.response.results[0].screensavers;
                             console.log(imagesUrl)
-                            list_of_url_images=[]
+                            list_of_url_images = []
                             console.log(list_of_url_images)
                             imagesUrl.forEach(async (link, index) => {
                                 var to = imagesUrl[index].lastIndexOf('/');
@@ -340,7 +340,7 @@ function imageRefreshRateFunction1(number) {
                                 console.log("not to download")
 
                             } else {
-                                fs.rmdir(smallpath + concept, {recursive: true}, async (err) => {
+                                fs.rmdir(smallpath + concept, { recursive: true }, async (err) => {
                                     if (err) {
                                         throw err;
                                     } else {
@@ -401,6 +401,47 @@ function imageRefreshRateFunction1(number) {
     }, rate)
 }
 
+function ChangeToDark (){
+    document.documentElement.style.setProperty("--MainColor","#212121")
+    document.documentElement.style.setProperty("--MainFontColor","white")
+    document.documentElement.style.setProperty("--BackButtonColor","white")
+    document.documentElement.style.setProperty("--placeholderColor","white")
+    document.documentElement.style.setProperty("--aboutheadingColor","white")
+    document.documentElement.style.setProperty("--inpurttcolor","white")
+}
+
+function ChangeToLight (){
+    document.documentElement.style.setProperty("--MainColor","#fff")
+    document.documentElement.style.setProperty("--MainFontColor","black")
+    document.documentElement.style.setProperty("--BackButtonColor","black")
+    document.documentElement.style.setProperty("--placeholderColor","black")
+    document.documentElement.style.setProperty("--aboutheadingColor","black")
+    document.documentElement.style.setProperty("--inpurttcolor","black")
+
+}
+
+function Mode(check){
+    if (check){
+        ChangeToDark()
+    }
+    else{
+        ChangeToLight()
+    }
+    // if ( localStorage.getItem("DarkModeEnabld") ){ 
+    //     // localStorage.setItem("DarkModeEnabld","true")
+    // }
+    // else{
+    //     localStorage.setItem("DarkModeEnabld","false")
+    // }
+    // console.log(localStorage.getItem("DarkModeEnabld"));
+    //  document.documentElement.style.setProperty("--MainColor","red")
+
+    // $("#dashboard").css("color", "white");
+    // $("#dashboard").css("background-color", "black");
+    // console.log("mode")
+    
+}
+
 
 function fontsize() {
     s_size = $("#font_size").val()
@@ -420,13 +461,13 @@ function fontsize() {
             $("#msg").text("")
         }
     } else {
-        $("#msg").text("Invalid FontSize or StoreNumber or url ").css({color: "red"})
+        $("#msg").text("Invalid FontSize or StoreNumber or url ").css({ color: "red" })
     }
 
     var msg = $("#msg").text()
 
     if (s_url === "" || s_number === "" || positionNum === "") {
-        $("#msg").text("Url, Store Number and position Number Required").css({color: "red"})
+        $("#msg").text("Url, Store Number and position Number Required").css({ color: "red" })
     } else {
         if (msg === "") {
             $("#msg").text("")
@@ -437,7 +478,7 @@ function fontsize() {
     if ((((irrcheck % 1000) === 0) && (parseInt(s_irr) > 0)) || (s_irr === "")) {
         console.log(true)
     } else {
-        $("#msg").text("invalid refresh Rate").css({color: "red"})
+        $("#msg").text("invalid refresh Rate").css({ color: "red" })
     }
     msg = $("#msg").text()
     if (msg === "") {
@@ -451,14 +492,14 @@ function fontsize() {
         }
         fs.writeFileSync(path.resolve(local_directory + main_folder, 'setting_data.json'), JSON.stringify(setting_dict));
         GET_ORDER_URL = s_url
-        $("#msg2").text("Settings Saved Successfully").css({color: "green"})
+        $("#msg2").text("Settings Saved Successfully").css({ color: "green" })
         setTimeout(function () {
             $("#msg").text("")
             $("#msg2").text("")
         }, 2000)
         dashboard(s_number)
     } else {
-        $("#msg2").text("Error please Check ").css({color: "red"})
+        $("#msg2").text("Error please Check ").css({ color: "red" })
         setTimeout(function () {
             $("#msg").text("")
             $("#msg2").text("")
@@ -466,6 +507,7 @@ function fontsize() {
     }
 
 }
+
 
 // function orderRefreshRate(rate) {
 //     if (orderInterval !== undefined) clearInterval(orderInterval);
@@ -525,87 +567,87 @@ const dashboard = (storenumber) => {
     }
     setInterval(() => {
         fetchingOrders(GET_ORDER_URL, function (order_no) {
-                log.info('url and store number in 164 render.js -->' + GET_ORDER_URL + ',' + storenumber)
-                if (order_no.length > 0) {
-                    if ($('#about').is(":hidden") && $('#settings').is(":hidden")) {
-                        for (let i = 1; i <= 9; i++) {
-                            let num = order_no[i - 1].number
-                            if (num === undefined) {
-                                $(`#order_no_${i}`).html('A');
-                            } else {
-                                $('#slideshow').hide();
-                                $('#dashboard').show();
-                                if (order_no.length === 1) {
-                                    for (let x = 2; x <= 9; x++) {
-                                        $(`#order_no_${x}`).html(' ');
-                                    }
-                                }
-                                if (order_no.length === 2) {
-                                    for (let x = 3; x <= 9; x++) {
-                                        $(`#order_no_${x}`).html(' ');
-                                    }
-                                }
-                                if (order_no.length === 3) {
-                                    for (let x = 4; x <= 9; x++) {
-                                        $(`#order_no_${x}`).html(' ');
-                                    }
-                                }
-                                $(`#order_no_${i}`).html(num);
-                            }
-                        }
-                        // for (let i = 0; i <= order_no.length; i++) {
-                        //     let num = order_no[i].number
-                        //     $(`#order_no_${display_index}`).html(num);
-                        //
-                        //     if (order_verify.has(num) === false) {
-                        //         order_verify.add(num)
-                        //         if (order_queue.length < 9) {
-                        //             order_queue.push(num);
-                        //             $(`#order_no_${display_index}`).html(num);
-                        //             display_index++;
-                        //
-                        //         } else {
-                        //             pending_order_queue.push(num)
-                        //         }
-                        //     }
-                        //
-                        //
-                        // }
-                        // while(order_queue.pop());
-                        // while(pending_order_queue.pop());
-                        // order_verify.clear();
-                    } else {
-                        $('#dashboard').hide();
-                        $('#slideshow').hide();
-                        if ($('#settings').is(":hidden")) {
-                            $('#about').show();
+            log.info('url and store number in 164 render.js -->' + GET_ORDER_URL + ',' + storenumber)
+            if (order_no.length > 0) {
+                if ($('#about').is(":hidden") && $('#settings').is(":hidden")) {
+                    for (let i = 1; i <= 9; i++) {
+                        let num = order_no[i - 1].number
+                        if (num === undefined) {
+                            $(`#order_no_${i}`).html('A');
                         } else {
-                            $('#settings').show();
+                            $('#slideshow').hide();
+                            $('#dashboard').show();
+                            if (order_no.length === 1) {
+                                for (let x = 2; x <= 9; x++) {
+                                    $(`#order_no_${x}`).html(' ');
+                                }
+                            }
+                            if (order_no.length === 2) {
+                                for (let x = 3; x <= 9; x++) {
+                                    $(`#order_no_${x}`).html(' ');
+                                }
+                            }
+                            if (order_no.length === 3) {
+                                for (let x = 4; x <= 9; x++) {
+                                    $(`#order_no_${x}`).html(' ');
+                                }
+                            }
+                            $(`#order_no_${i}`).html(num);
+                        }
+                    }
+                    // for (let i = 0; i <= order_no.length; i++) {
+                    //     let num = order_no[i].number
+                    //     $(`#order_no_${display_index}`).html(num);
+                    //
+                    //     if (order_verify.has(num) === false) {
+                    //         order_verify.add(num)
+                    //         if (order_queue.length < 9) {
+                    //             order_queue.push(num);
+                    //             $(`#order_no_${display_index}`).html(num);
+                    //             display_index++;
+                    //
+                    //         } else {
+                    //             pending_order_queue.push(num)
+                    //         }
+                    //     }
+                    //
+                    //
+                    // }
+                    // while(order_queue.pop());
+                    // while(pending_order_queue.pop());
+                    // order_verify.clear();
+                } else {
+                    $('#dashboard').hide();
+                    $('#slideshow').hide();
+                    if ($('#settings').is(":hidden")) {
+                        $('#about').show();
+                    } else {
+                        $('#settings').show();
+                    }
+                }
+            } else {
+                if ($('#about').is(":hidden") && $('#settings').is(":hidden")) {
+                    if (order_no.length === 0) {
+                        $('#dashboard').hide();
+                        // imageRefreshRateFunction1(irr_value)
+                        $('#slideshow').show();
+                    } else {
+                        if ($('#dashboard').css('display') === 'none') {
+                            $('#dashboard').show();
+                            $('#slideshow').hide();
                         }
                     }
                 } else {
-                    if ($('#about').is(":hidden") && $('#settings').is(":hidden")) {
-                        if (order_no.length === 0) {
-                            $('#dashboard').hide();
-                            // imageRefreshRateFunction1(irr_value)
-                            $('#slideshow').show();
-                        } else {
-                            if ($('#dashboard').css('display') === 'none') {
-                                $('#dashboard').show();
-                                $('#slideshow').hide();
-                            }
-                        }
+                    $('#dashboard').hide();
+                    $('#slideshow').hide();
+                    if ($('#settings').is(":hidden")) {
+                        $('#about').show();
                     } else {
-                        $('#dashboard').hide();
-                        $('#slideshow').hide();
-                        if ($('#settings').is(":hidden")) {
-                            $('#about').show();
-                        } else {
-                            $('#settings').show();
-                        }
+                        $('#settings').show();
                     }
                 }
             }
+        }
         )
     }, 2000);
     imageRefreshRateFunction1(irr_value)

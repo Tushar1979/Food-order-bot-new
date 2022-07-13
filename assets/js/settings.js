@@ -14,9 +14,19 @@ const settings_template = () => `
          
        
       <div class="card darken-1" id="settingcard">
-         <a href="#" onclick=" window.location.reload()" id="backbutton">Back</a> 
-        <div class="card-content white-text">  
-     
+         <a href="#" onclick=" window.location.reload()" id="backbutton">Back</a>
+           
+
+         <button type='button' onclick="Mode(false)">Modes</Button>
+   
+        
+
+       <input type="radio"  id="modes"  onchange="function (event){Mode(event.target.value)}"> 
+
+      
+
+
+         <div class="card-content white-text">  
           <span class="card-title" id="cardtitle"> Setting</span>
           <form>
           <div class="mb-3">
@@ -28,7 +38,7 @@ const settings_template = () => `
             <input type="number" class="form-control" id="store_number" name="store_number" placeholder="enter store number" min="0" onkeydown="return ((event.keyCode !== 109) && (event.keyCode !== 107) && (event.keyCode !== 110) && (event.keyCode !== 69))" value="${store_number_from_json}" >
           </div>
           <div class="mb-3">
-            <label class="form-label inputlabel" >Image Refresh Rate(in seconds) :</label>
+            <label class="form-label inputlabel" >Screen Saver Scroll Rate(in seconds) :</label>
             <input type="number" class="form-control" id="irr" name="irr" placeholder="enter refresh rate" min="0" onkeydown="return ((event.keyCode !== 109) && (event.keyCode !== 107) && (event.keyCode !== 110) && (event.keyCode !== 69))" value="${irr_from_json}" >
           </div>
           <div class="mb-3">
@@ -67,7 +77,7 @@ const settings_template = () => `
 `
 
 module.exports = {
-    settings_template
+  settings_template
 }
 
 //   <div class="container" >

@@ -408,8 +408,9 @@ function ChangeToDark (){
     document.documentElement.style.setProperty("--placeholderColor","white")
     document.documentElement.style.setProperty("--aboutheadingColor","white")
     document.documentElement.style.setProperty("--inpurttcolor","white")
+    document.documentElement.style.setProperty("--s4","white")
 }
-
+--s4
 function ChangeToLight (){
     document.documentElement.style.setProperty("--MainColor","#fff")
     document.documentElement.style.setProperty("--MainFontColor","black")
@@ -417,6 +418,7 @@ function ChangeToLight (){
     document.documentElement.style.setProperty("--placeholderColor","black")
     document.documentElement.style.setProperty("--aboutheadingColor","black")
     document.documentElement.style.setProperty("--inpurttcolor","black")
+    document.documentElement.style.setProperty("--s4","black")
 
 }
 

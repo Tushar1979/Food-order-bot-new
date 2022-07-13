@@ -5,6 +5,9 @@
     --MainFontColor:white;
     --BackButtonColor:white;
     --placeholderColor:white;
+    --aboutheadingColor:white;
+    --inpurttcolor:white;
+    --s4:white;
 }
 
 .inputlabel {
@@ -80,7 +83,7 @@ body {
 
 #about-heading {
     background-color:-- #212121;
-    color: white;
+    color: var(--aboutheadingColor);
 }
 #cardtitle{
     font-size:   35px;
@@ -127,7 +130,7 @@ small {
 
 input {
     font-family: monospace;
-    color: white;
+    color:  var(--inpurttcolor);
 
 }
 
@@ -142,7 +145,7 @@ input {
 .s4 {
     border-style: solid;
     border-width: 1px;
-    border-color: white;
+    border-color:  var(--s4);
     height: 34vh;
 }
 

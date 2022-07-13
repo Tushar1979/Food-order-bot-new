@@ -270,7 +270,7 @@ function sendRequest(data) {
     console.log(JSON.stringify(data))
     var options = {
         'method': 'POST',
-        // 'url': 'https://thestuff.io/api/1.1/wf/heartbeat',
+        // 'url': 'https://thestuff.io/api/1.1/wf/heartbeat',  
         'headers': {
             'Content-Type': 'application/json'
         },

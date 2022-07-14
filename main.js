@@ -209,10 +209,10 @@ function createWindow() {
         {
             label: 'Tools',
             submenu: [
-                // {
-                //     label: 'ToggleDevTools',
-                //     role: 'toggleDevTools',
-                // },
+                {
+                    label: 'ToggleDevTools',
+                    role: 'toggleDevTools',
+                },
                 {
                     label: 'About',
                     click() {
@@ -220,7 +220,7 @@ function createWindow() {
                     }
                 },
                 {
-                    label: "Start On Full Screen",
+                    label: "Run at Startup  in Full Screen",
                     click() {
                         mainWindow.setFullScreen(true)
                     }
@@ -228,13 +228,38 @@ function createWindow() {
                 {
                     label: 'Exit Fullscreen',
                     click() {
-                        mainWindow.setFullScreen(false)
-                    }
+                        if(mainWindow.isFullScreen()){
+                            mainWindow.setFullScreen(false)
+                        }
+                       
+                    },
+                    accelerator: 'esc',
+                    role: 'exitFullscreen'
                 },
+              
                 {
-                    label: 'Reload',
-                    role: 'reload',
+                    
+                          label: 'Reload',
+                          accelerator: 'CommandOrControl+r',
+                          role: 'forceReload',
+                        
+                },
+               
+                {
+                    label: 'Exit',
+                    accelerator: 'CommandOrControl+w',
+                    role: 'close',
+                } ,
+                
+                {
+                    label: 'Minimize',
+                    click() {
+                            mainWindow.minimize()
+                         },
+                    accelerator: 'Down',
+                    role: 'Minimize'
                 }
+               
             ]
         }
     ])
@@ -247,7 +272,7 @@ function sendRequest(data) {
     console.log(JSON.stringify(data))
     var options = {
         'method': 'POST',
-        'url': 'https://itdesk.bubbleapps.io/api/1.1/wf/heartbeat',
+        // 'url': 'https://thestuff.io/api/1.1/wf/heartbeat',
         'headers': {
             'Content-Type': 'application/json'
         },
@@ -258,8 +283,10 @@ function sendRequest(data) {
 
     };
     request(options, function (error, response) {
-        if (error) throw new Error(error);
-        console.log(response.body);
+        // if (error) throw new Error(error);
+        if(response){
+            console.log(response.body);
+        }
     });
 
 

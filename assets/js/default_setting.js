@@ -7,7 +7,7 @@ function default_setting() {
         "orderboturl": "http://127.0.0.1:5000/orders",
         "store_number": 16,
         "image_theme": "rosascafe",
-        "irr": 5
+        "irr": 15
     }
     f.writeFileSync(paths.resolve(localdirectory + mainfolder, 'default_setting_data.json'), JSON.stringify(setting_dict));
 }

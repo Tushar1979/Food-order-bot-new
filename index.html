@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./assets/css/materialize.min.css">
     <link rel="stylesheet" href="./assets/css/main.css">
     <link rel="stylesheet" href="./node_modules/animate.css/animate.css">
-    <title>Food System</title>
+    <title>Order Viewer</title>
 </head>
 
 <body>
@@ -24,36 +24,36 @@
         <div class="col s12  center-align">
             <div class="row center-align" >
 
-            <div class="col s4 #212121 grey darken-4 text-center" style="text-align: center;"  >
+            <div class="col #212121  text-center s4" style="text-align: center;border-width:0 1px 1px 0"  >
                     <h1 class="center white-text text-center"
                         id="order_no_1" ></h1>
                 </div>
 
 
-                <div class="col s4 #212121 grey darken-4">
-                    <h1 class="center white-text " id="order_no_2"></h1>
+                <div class="col #212121  s4" style="border-width:0 1px 1px 1px">
+                    <h1 class="center white-text " id="order_no_2" ></h1>
                 </div>
-                <div class="col s4 #212121 grey darken-4">
-                    <h1 class="center white-text" id="order_no_3"></h1>
+                <div class="col #212121  s4" style="border-width:0 0 1px 1px">
+                    <h1 class="center white-text" id="order_no_3" ></h1>
                 </div>
 
-                <div class="col s4 #212121 grey darken-4">
+                <div class="col #212121  s4" style="border-width:1px 1px 1px 0">
                     <h1 class="center white-text" id="order_no_4"></h1>
                 </div>
-                <div class="col s4 #212121 grey darken-4">
+                <div class="col #212121  s4"style="border-width:1px 1px 1px 1px">
                     <h1 class="center white-text" id="order_no_5"></h1>
                 </div>
-                <div class="col s4 #212121 grey darken-4">
+                <div class="col #212121  s4" style="border-width:1px 0 1px 1px">
                     <h1 class="center white-text" id="order_no_6"></h1>
                 </div>
-                <div class="col s4 #212121 grey darken-4">
+                <div class="col #212121  s4" style="border-width:1px 1px 0 0">
                     <h1 class="center white-text " id="order_no_7"></h1>
                 </div>
-                <div class="col s4 #212121 grey darken-4">
+                <div class="col #212121  s4" style="border-width:1px 1px 0 1px">
                     <h1 class="center white-text" id="order_no_8"></h1>
                 </div>
 
-                <div class="col s4 #212121 grey darken-4">
+                <div class="col #212121  s4" style="border-width:1px 0 0 1px">
                     <h1 class="center white-text" id="order_no_9"></h1>
                 </div>
 
@@ -74,7 +74,10 @@
 <script src="./assets/js/materialize.min.js"></script>
 <script src="./renderer.js"></script>
 <script src="./assets/js/materlize_css_activate.js"></script>
-
+<script>
+    const theme = localStorage.getItem('theme')
+    document.documentElement.setAttribute('data-theme', theme);
+</script>
 </body>
 
 </html>

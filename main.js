@@ -209,10 +209,10 @@ function createWindow() {
         {
             label: 'Tools',
             submenu: [
-                {
-                    label: 'ToggleDevTools',
-                    role: 'toggleDevTools',
-                },
+                // {
+                //     label: 'ToggleDevTools',
+                //     role: 'toggleDevTools',
+                // },
                 {
                     label: 'About',
                     click() {
@@ -253,6 +253,7 @@ function createWindow() {
                 
                 {
                     label: 'Minimize',
+                    visible: false,
                     click() {
                             mainWindow.minimize()
                          },

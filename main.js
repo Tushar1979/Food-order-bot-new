@@ -34,60 +34,10 @@ else {
     console.log(position_number);
 }
 
-console.log(StoreNumber)
+
 let dateObj = new Date();
 let folder_name = dateObj.getDate() + "-" + dateObj.getDay() + "-" + dateObj.getFullYear();
 log.transports.file.resolvePath = () => path.join(local_directory + main_folder + folder_name, 'logs/main.log');
-
-// const setting_prompt = (title, label, callback) => {
-//     prompt({
-//         title: title,
-//         label: label,
-//         value: "",
-//         inputAttrs: {
-//             type: "tel"
-//         },
-//         type: 'input'
-//     })
-//         .then((r) => {
-//             if (r === null) {
-//                 log.info('user cancelled in line 19 in main.js')
-//                 callback(false)
-//             } else {
-//                 log.info('result in line 23 in main.js ', r)
-//                 callback(r)
-//             }
-//         })
-//         .catch(log.error)
-// }
-//
-// function valid_number(data) {
-//     let arr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
-//     for (let i = 0; i < data.length; i++) {
-//         let flag = false
-//         for (let j = 0; j < arr.length; j++) {
-//             if (data[i] === arr[j]) {
-//                 flag = true
-//             }
-//         }
-//         if (!flag) {
-//
-//             return false
-//         }
-//     }
-//     return true
-// }
-//
-// function checkUrl(str) {
-//     let pattern = "^https?:\/\/."
-//     if (str.match(pattern)) {
-//         log.info("user enter valid url in line 51 in main.js " + str)
-//         return true
-//     } else {
-//         log.error("user enter Invalid url in line 51 in main.js " + str)
-//         return false
-//     }
-// }
 
 function createWindow() {
     // Create the browser window.
@@ -113,106 +63,14 @@ function createWindow() {
             }
 
         },
-        // {
-        //     label: 'Settings',
-        //     submenu: [
-        //         {
-        //             label: 'OrderBotUrl',
-        //             click() {
-        //                 title = "OrderBotUrl"
-        //                 label = "Url"
-        //                 setting_prompt(title, label, function (url) {
-        //                     if (checkUrl(url)) {
-        //                         mainWindow.webContents.send('getOrderFromUrl', {'getOrderFromUrl': url});
-        //                     } else {
-        //                         dialog.showErrorBox("warning", "Please enter valid url!")
-        //                     }
-        //                 })
-        //             },
-        //         },
-        //
-        //         {
-        //             label: 'Store Number',
-        //             click() {
-        //                 title = "Store Number"
-        //                 label = "Number"
-        //                 setting_prompt(title, label, function (num) {
-        //                     if (valid_number(num)) {
-        //                         mainWindow.webContents.send('storenumber', {'storenumber': num});
-        //                     } else {
-        //                         dialog.showErrorBox("warning", "Please enter valid number!")
-        //                     }
-        //                 })
-        //             },
-        //         },
-        //         {
-        //             label: "Start On Full Screen",
-        //             click() {
-        //                 mainWindow.setFullScreen(true)
-        //             }
-        //         },
-        //         {
-        //             label: 'Font Size',
-        //             click() {
-        //                 title = "Font Size"
-        //                 label = "Number (range : 80-450)"
-        //                 setting_prompt(title, label, function (num) {
-        //
-        //                     if (valid_number(num)) {
-        //                         if (num > 79 && num < 551) {
-        //                             mainWindow.webContents.send('FontSize', {'fontsize': num});
-        //
-        //                         } else {
-        //                             dialog.showErrorBox("warning", "Please enter number between 80 to 550!")
-        //
-        //                         }
-        //
-        //                     } else {
-        //                         dialog.showErrorBox("warning", "Please enter valid number!")
-        //                     }
-        //                 })
-        //             },
-        //         },
-        // {
-        //     label: 'Order Refresh Rate',
-        //     click() {
-        //         title = "Order Refresh Rate"
-        //         label = "Seconds"
-        //         setting_prompt(title, label, function (num) {
-        //
-        //             if (valid_number(num)) {
-        //                 num = parseInt(num) * 1000;
-        //                 mainWindow.webContents.send('orderRefreshRate', {'orderrefreshrate': num});
-        //             } else {
-        //                 dialog.showErrorBox("warning", "Please enter valid number!")
-        //             }
-        //         })
-        //     },
-        // },
-        //     {
-        //         label: 'Image Refresh Rate',
-        //         click() {
-        //             title = "Image Refresh Rate"
-        //             label = "Seconds"
-        //             setting_prompt(title, label, function (num) {
-        //
-        //                 if (valid_number(num)) {
-        //                     num = parseInt(num) * 1000;
-        //                     mainWindow.webContents.send('imageRefreshRate', {'imageRefreshRate': num});
-        //                 } else {
-        //                     dialog.showErrorBox("warning", "Please enter valid number!")
-        //                 }
-        //             })
-        //         },
-        //     },
 
         {
             label: 'Tools',
             submenu: [
-                // {
-                //     label: 'ToggleDevTools',
-                //     role: 'toggleDevTools',
-                // },
+                {
+                    label: 'ToggleDevTools',
+                    role: 'toggleDevTools',
+                },
                 {
                     label: 'About',
                     click() {
@@ -270,7 +128,7 @@ function createWindow() {
 
 
 function sendRequest(data) {
-    console.log(JSON.stringify(data))
+ 
     var options = {
         'method': 'POST',
         // 'url': 'https://thestuff.io/api/1.1/wf/heartbeat',
@@ -303,60 +161,12 @@ app.whenReady().then(() => {
         }
     })
 })
-
-app.on('browser-window-created', (event) => {
-    // let data = {
-    //         "message": "App Is Start, please wait we are fetching Store Number",
-    //         "live": "yes",
-    //         "date": date
-    //
-    //     }
-        // sendRequest(data)
-
-    }
-)
-
-app.on('browser-window-focus', () => {
-        // let data = {
-        //     "message": "App Is Started Running ",
-        //     "live": "yes",
-        //     "storenumber": StoreNumber,
-        //     "date": date
-        //
-        // }
-        // sendRequest(data)
-    }
-)
-
-app.on('before-quit', (event) => {
-    // let data = {
-    //     "message": "App Is Quit ",
-    //     "live": "no",
-    //     "storenumber": StoreNumber,
-    //     "date": date
-    //
-    // }
-    // sendRequest(data)
-    // event.preventDefault()
-});
-
-app.on('browser-window-blur', () => {
-        // let data = {
-        //     "message": "App Is Running in background ",
-        //     "live": "yes",
-        //     "storenumber": StoreNumber,
-        //     "date": date
-        //
-        // }
-        // sendRequest(data)
-    }
-)
 app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') app.quit()
 })
 
 setInterval(function () {
-    console.log(position_number)
+   
     var time = new Date();
     var dd = time.getUTCDate()
     var mm = time.getUTCMonth() + 1;
@@ -369,7 +179,7 @@ setInterval(function () {
     min = min < 10 ? '0' + min : min;
     var FinalTime = hours + ':' + min + ' ' + ampm;
     var date = mm + "/" + dd + "/" + yyyy + " " + FinalTime
-    console.log(date)
+ 
     let data = {
         "storenumber": StoreNumber,
         "date": date,

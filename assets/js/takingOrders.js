@@ -4,7 +4,7 @@ const request = require("request");
 const fetchingOrders = (url, callback) => {
     request(url, function (error, response, body) {
         let data = JSON.parse(body);
-        console.log(data);
+    
         callback(data)
 
     });

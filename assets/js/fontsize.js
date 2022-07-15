@@ -9,9 +9,7 @@ function FontSize(size) {
     } else {
         let width = window.innerWidth
         let height = window.innerHeight
-        console.log(width)
-        console.log(height)
-        console.log(size)
+      
         if (width < 1350) {
             if (size > 79 && size < 101) {
                 $("h1").css({"font-size": size + "px", "margin-top": "60px"})
